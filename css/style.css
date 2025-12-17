@@ -1423,6 +1423,69 @@ body.dark-mode section:nth-of-type(even) {
 /* ========== ABOUT SECTION ========== */
 .about {
     background: var(--light-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.about-bg-element {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: var(--primary-color);
+    opacity: 0.08;
+    animation: float-element 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.1));
+}
+
+.about-bg-element.bg-elem-1 {
+    top: 10%;
+    left: 5%;
+    animation: float-element 7s ease-in-out infinite;
+}
+
+.about-bg-element.bg-elem-2 {
+    top: 15%;
+    right: 8%;
+    animation: float-element-reverse 8s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.about-bg-element.bg-elem-3 {
+    bottom: 20%;
+    left: 10%;
+    animation: float-element 9s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.about-bg-element.bg-elem-4 {
+    bottom: 15%;
+    right: 12%;
+    animation: float-element-reverse 7.5s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+.about-bg-element.bg-elem-5 {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: float-element 8s ease-in-out infinite;
+    animation-delay: 2s;
+    font-size: 60px;
+    opacity: 0.06;
 }
 
 .about-content {
@@ -1472,7 +1535,7 @@ body.dark-mode section:nth-of-type(even) {
     width: 300px;
     height: 300px;
     aspect-ratio: 1;
-    padding: 3px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1482,16 +1545,20 @@ body.dark-mode section:nth-of-type(even) {
     position: relative;
     box-shadow: 
         0 0 30px rgba(37, 99, 235, 0.4),
-        0 0 60px rgba(37, 99, 235, 0.2);
+        0 0 60px rgba(37, 99, 235, 0.2),
+        inset 0 0 30px rgba(255, 255, 255, 0.1);
     animation: float-profile 3s ease-in-out infinite;
     transition: all 0.4s ease;
+    border: 3px solid rgba(255, 255, 255, 0.3);
 }
 
 .about-placeholder:hover {
     box-shadow: 
         0 0 50px rgba(37, 99, 235, 0.6),
-        0 0 100px rgba(37, 99, 235, 0.3);
+        0 0 100px rgba(37, 99, 235, 0.3),
+        inset 0 0 30px rgba(255, 255, 255, 0.15);
     transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 .about-placeholder::before {
@@ -1544,16 +1611,19 @@ body.dark-mode section:nth-of-type(even) {
 /* Chemistry Elements */
 .chemistry-element {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
+    font-size: 28px;
     color: var(--accent-color);
     z-index: 3;
     animation: element-float 2.5s ease-in-out infinite, element-glow 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.8)) drop-shadow(0 0 30px rgba(37, 99, 235, 0.4));
+    filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.6)) drop-shadow(0 0 24px rgba(37, 99, 235, 0.3));
+    opacity: 0.75;
+    pointer-events: none;
+}
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     text-shadow: 0 0 15px rgba(37, 99, 235, 0.7), 0 0 30px rgba(37, 99, 235, 0.5);
     border-radius: 50%;
@@ -1974,6 +2044,18 @@ body.dark-mode section:nth-of-type(even) {
     font-size: var(--font-size-4xl);
     position: relative;
     overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
 }
 
 .project-image::after {
@@ -1993,15 +2075,20 @@ body.dark-mode section:nth-of-type(even) {
 }
 
 .project-image span {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     margin-top: var(--spacing-md);
-    font-weight: 600;
+    font-weight: 700;
     position: relative;
     z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .project-content {
     padding: var(--spacing-xl);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .project-content h3 {
@@ -2011,6 +2098,9 @@ body.dark-mode section:nth-of-type(even) {
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.3px;
     line-height: var(--line-height-normal);
+    min-height: 56px;
+    display: flex;
+    align-items: center;
 }
 
 .project-content p {
@@ -2018,6 +2108,13 @@ body.dark-mode section:nth-of-type(even) {
     font-size: var(--font-size-sm);
     margin-bottom: var(--spacing-md);
     line-height: var(--line-height-relaxed);
+}
+
+.project-content .location {
+    font-size: var(--font-size-xs);
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
 }
 
 .project-tags {
@@ -2028,20 +2125,22 @@ body.dark-mode section:nth-of-type(even) {
 
 .project-tags span {
     display: inline-block;
-    background: rgba(37, 99, 235, 0.08);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.05));
     color: var(--primary-color);
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    border: 1.5px solid rgba(37, 99, 235, 0.35);
     transition: all var(--transition-fast);
+    white-space: nowrap;
 }
 
 .project-tags span:hover {
-    background: rgba(37, 99, 235, 0.15);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(59, 130, 246, 0.1));
     border-color: var(--primary-color);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
 }
 
 /* Project Sections */
@@ -2692,41 +2791,99 @@ body.dark-mode section:nth-of-type(even) {
     .section-title {
         font-size: clamp(24px, 6vw, 32px);
     }
+
+    .about-placeholder {
+        width: 280px;
+        height: 280px;
+        padding: 6px;
+        box-shadow: 
+            0 0 35px rgba(37, 99, 235, 0.3),
+            0 0 70px rgba(37, 99, 235, 0.15),
+            inset 0 0 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .chemistry-element {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        opacity: 0.75;
+    }
+
+    .project-image,
+    .project-image img {
+        height: 220px;
+    }
+
+    .molecule-animation {
+        display: none !important;
+    }
+
+    .about-bg-element {
+        width: 70px;
+        height: 70px;
+        font-size: 42px;
+        opacity: 0.07;
+    }
+
+    .about-bg-element.bg-elem-5 {
+        font-size: 56px;
+    }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 var(--spacing-md);
+        padding: 0 var(--spacing-sm);
     }
 
     section {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-sm);
     }
 
     .hero {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-sm);
+        min-height: 60vh;
+    }
+
+    .hero-content {
+        gap: var(--spacing-md) !important;
     }
 
     .hero-content h1 {
         font-size: clamp(20px, 5vw, 28px);
+        line-height: 1.3;
     }
 
     .hero-content h2 {
         font-size: clamp(14px, 3.5vw, 16px);
+        line-height: 1.4;
     }
 
     .slogan {
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-sm);
+        margin-top: var(--spacing-sm);
+    }
+
+    .hero-buttons {
+        gap: var(--spacing-sm) !important;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        padding: var(--spacing-md) var(--spacing-lg) !important;
+        font-size: var(--font-size-sm);
+        width: 100%;
     }
 
     .nav-controls {
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
     .theme-toggle,
     .lang-toggle {
         padding: var(--spacing-xs) var(--spacing-xs);
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-sm);
+        width: 36px;
+        height: 36px;
     }
 
     .services-grid,
@@ -2734,14 +2891,118 @@ body.dark-mode section:nth-of-type(even) {
     .certificates-grid,
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
     }
 
     .section-title {
-        font-size: var(--font-size-xl);
+        font-size: clamp(20px, 5vw, 24px);
+        margin-bottom: var(--spacing-lg);
     }
 
     .footer-content {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .project-card,
+    .service-card,
+    .skill-card,
+    .certificate-card {
+        padding: var(--spacing-md);
+    }
+
+    .project-card img,
+    .project-image {
+        height: 150px;
+    }
+
+    .project-content {
+        padding: var(--spacing-lg) var(--spacing-md);
+        min-height: 160px;
+    }
+
+    .project-content h3 {
+        font-size: var(--font-size-lg);
+        min-height: auto;
+    }
+
+    .project-content p {
+        font-size: var(--font-size-xs);
+    }
+
+    .project-tags {
+        gap: var(--spacing-xs);
+    }
+
+    .project-tags span {
+        padding: 4px 10px;
+        font-size: var(--font-size-xs);
+    }
+
+    .about-placeholder {
+        width: 220px;
+        height: 220px;
+        margin-right: 0;
+        margin-bottom: var(--spacing-lg);
+        padding: 8px;
+        box-shadow: 
+            0 0 25px rgba(37, 99, 235, 0.35),
+            0 0 50px rgba(37, 99, 235, 0.15),
+            inset 0 0 25px rgba(255, 255, 255, 0.08);
+    }
+
+    .about-placeholder:hover {
+        box-shadow: 
+            0 0 40px rgba(37, 99, 235, 0.5),
+            0 0 80px rgba(37, 99, 235, 0.25),
+            inset 0 0 25px rgba(255, 255, 255, 0.12);
+    }
+
+    .chemistry-element {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+        opacity: 0.8;
+    }
+
+    .about-placeholder img {
+        filter: brightness(1.02) contrast(1.15);
+    }
+
+    .about-image {
+        margin-right: 0;
+    }
+
+    .about-bg-element {
+        width: 60px;
+        height: 60px;
+        font-size: 36px;
+    }
+
+    .about-bg-element.bg-elem-5 {
+        font-size: 44px;
+    }
+
+    .timeline-item {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .about-image-container {
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .molecule-animation,
+    .chemistry-symbols,
+    .floating-particles,
+    .floating-icons,
+    .wave-container,
+    .pulse-elements {
+        display: none !important;
+    }
+
+    .hero-background::before,
+    .hero-background::after {
+        animation: none !important;
     }
 }
 
